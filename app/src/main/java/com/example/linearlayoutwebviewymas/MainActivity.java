@@ -1,5 +1,6 @@
 package com.example.linearlayoutwebviewymas;
 
+//imports de la aplicacion
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -12,6 +13,11 @@ import android.view.View;
 import android.widget.EditText;
 
 
+/*Esta aplicación consta de 5 actividades, las cuales se acceden
+* a través de los métodos de la clase MainActivity con la finalidad
+* de primero, aplicar un layout horizontal y la función de webView y la implementación
+* de los cinco problemas desarrollados en la unidad uno. Aplicando los conocimientos
+* aprendidos en la clase*/
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -26,13 +32,19 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /*Con estos metodos se lanzan las actividades correspondientes*/
+
     //metodo para lanzar el webView
     public void verWV (View view) {
+        //obtenemos el texto del editText
         EditText et1 = findViewById(R.id.et1);
+        //obtenemos la direccion
         String direccion = et1.getText().toString();
-
+        //creamos el intent
         Intent intent = new Intent(this, Proyecto06WV.class);
+        //pasamos la direccion a la actividad
         intent.putExtra("direccion", direccion);
+        //lanzammos la actividad
         startActivity(intent);
     }
 

@@ -16,6 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class Proyecto06WV extends AppCompatActivity {
 
+    //declaramos el webView
     private WebView webView1;
 
     @Override
@@ -24,25 +25,30 @@ public class Proyecto06WV extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_proyecto06_wv);
 
+        //traspaso de variables
         webView1 = (WebView) findViewById(R.id.webView1);
-
+        //obtenemos la direccion de la actividad anterior
         Bundle bundle = getIntent().getExtras();
-
+        //si la direccion no esta vacia la cargamos
         if (bundle != null && bundle.containsKey("direccion")) {
             String dato = bundle.getString("direccion");
-
+            //si la direccion no empieza con http o https la agregamos
             if (!TextUtils.isEmpty(dato)) {
                 if (!dato.startsWith("http://") && !dato.startsWith("https://")) {
                     dato = "https://" + dato;
                 }
+                //cargamos la direccion
                 webView1.loadUrl(dato);
             } else {
+                //si la direccion esta vacia mostramos un mensaje
                 Toast.makeText(this, "La dirección está vacía", Toast.LENGTH_SHORT).show();
             }
         } else {
+            //si no se recibe ninguna direccion mostramos un mensaje
             Toast.makeText(this, "No se recibió ninguna dirección", Toast.LENGTH_SHORT).show();
         }
 
+        //configuramos el webView para que muestre la pagina web con javascript habilitado
         WebSettings webSettings = webView1.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webView1.setWebViewClient(new WebViewClient());
@@ -53,6 +59,7 @@ public class Proyecto06WV extends AppCompatActivity {
             return insets;
         });
     }
+    //metodo para finalizar la actividad
     public void finalizar(View v) {
         finish();
     }
